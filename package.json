@@ -1,0 +1,62 @@
+{
+  "name": "typescript-jspm-seed",
+  "version": "0.0.1",
+  "description": "The bleeding edge stack",
+  "main": "dist/typescript-jspm-seed.min.js",
+  "jspmPackage": true,
+  "author": "Joel Hernandez",
+  "scripts": {
+    "build:declarations" : "dts-generator -- --name typescript-jspm-seed --project . --exclude typings/**/*.d.ts --exclude src/**/*Spec.ts --exclude node_modules/**/*.ts --out dist/typescript-jspm-seed.d.ts",
+    "build:umd": "jspm build typescript-jspm-seed dist/typescript-jspm-seed.min.js --format umd --global-name typescriptJspmSeed --minify",
+    "build" : "npm-run-all build:umd build:declarations",
+    "test": "karma start karma.config.js",
+    "browser-sync:dist": "browser-sync start --server dist",
+    "serve:dist": "npm-run-all build browser-sync:dist",
+    "bundle": "jspm bundle typescript-jspm-seed storage/build.js -wid",
+    "browser-sync:dev": "browser-sync start --server --files '*(*.js|*.html)'",
+    "serve:dev": "npm-run-all --parallel bundle browser-sync:dev",
+    "docs": "typedoc --name 'typescript-jspm-seed' --readme README.md --module amd --out docs src",
+    "browser-sync:docs": "browser-sync start --server docs",
+    "serve:docs": "npm-run-all docs browser-sync:docs",
+    "jspm": "jspm",
+    "typings": "typings",
+    "browser-sync": "browser-sync",
+    "dts-generator": "dts-generator",
+    "postinstall": "jspm install"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.11.2",
+    "dts-generator": "^1.7.0",
+    "jasmine-core": "^2.4.1",
+    "jspm": "^0.17.0-beta.12",
+    "karma": "^0.13.22",
+    "karma-jasmine": "^0.3.8",
+    "karma-jspm": "^2.1.0",
+    "karma-phantomjs-launcher": "^1.0.0",
+    "npm-run-all": "^1.7.0",
+    "phantomjs-prebuilt": "^2.1.7",
+    "typedoc": "^0.3.12",
+    "typescript": "^1.8.10"
+  },
+  "jspm": {
+    "name": "typescript-jspm-seed",
+    "devDependencies": {
+      "os": "github:jspm/nodelibs-os@^0.2.0-alpha",
+      "plugin-typescript": "github:frankwallis/plugin-typescript@^4.0.5"
+    },
+    "peerDependencies": {},
+    "overrides": {
+      "npm:typescript@1.8.9": {
+        "browser": {},
+        "map": {
+          "buffer": "@empty",
+          "child_process": "@empty",
+          "fs": "@empty",
+          "path": "@empty",
+          "process": "@empty",
+          "readline": "@empty"
+        }
+      }
+    }
+  }
+}

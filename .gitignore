@@ -1,0 +1,7 @@
+/node_modules
+/jspm_packages
+/storage/*
+.idea
+npm-debug.log
+docs
+.DS_Store

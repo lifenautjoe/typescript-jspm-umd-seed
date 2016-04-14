@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "module": "umd",
+    "removeComments": true
+  },
+  "exclude": [
+    "jspm_packages",
+    "dist",
+    "node_modules",
+    "storage",
+    "typings"
+  ]
+}
