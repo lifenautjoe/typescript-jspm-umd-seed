@@ -3,8 +3,6 @@
 Work in progress
 ----------------
 
-*The brave stack*
-
     The opposite of bravery is not cowardice but conformity. 
     	- Robert Anthony
 
