@@ -8,6 +8,14 @@ Work in progress
 
 ## Stack
 
+* [jspm](http://jspm.io/)
+* [TypeScript](https://www.typescriptlang.org/)
+* [Jasmine](https://jasmine.github.io/)
+* [Karma](https://karma-runner.github.io)
+* [BrowserSync](https://www.browsersync.io/)
+* [dts-generator](https://github.com/SitePen/dts-generator)
+* [typings](https://github.com/typings/typings)
+
 ## Features
 
 ## Usage
