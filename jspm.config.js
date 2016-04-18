@@ -10,6 +10,9 @@ SystemJS.config({
         }
       }
     }
+  },
+  typescriptOptions: {
+    "typeCheck": "strict"
   }
 });
 
@@ -20,13 +23,30 @@ SystemJS.config({
     "npm:*.json"
   ],
   map: {
+    "buffer": "github:jspm/nodelibs-buffer@0.2.0-alpha",
+    "fs": "github:jspm/nodelibs-fs@0.2.0-alpha",
     "os": "github:jspm/nodelibs-os@0.2.0-alpha",
-    "plugin-typescript": "github:frankwallis/plugin-typescript@4.0.5"
+    "path": "github:jspm/nodelibs-path@0.2.0-alpha",
+    "plugin-typescript": "github:frankwallis/plugin-typescript@4.0.6",
+    "process": "github:jspm/nodelibs-process@0.2.0-alpha",
+    "readline": "github:jspm/nodelibs-readline@0.2.0-alpha"
   },
   packages: {
-    "github:frankwallis/plugin-typescript@4.0.5": {
+    "github:frankwallis/plugin-typescript@4.0.6": {
       "map": {
-        "typescript": "npm:typescript@1.8.9"
+        "typescript": "npm:typescript@1.8.10"
+      }
+    },
+    "github:jspm/nodelibs-buffer@0.2.0-alpha": {
+      "map": {
+        "buffer-browserify": "npm:buffer@4.5.1"
+      }
+    },
+    "npm:buffer@4.5.1": {
+      "map": {
+        "base64-js": "npm:base64-js@1.1.2",
+        "ieee754": "npm:ieee754@1.1.6",
+        "isarray": "npm:isarray@1.0.0"
       }
     },
     "github:jspm/nodelibs-os@0.2.0-alpha": {
@@ -34,8 +54,5 @@ SystemJS.config({
         "os-browserify": "npm:os-browserify@0.2.1"
       }
     }
-  },
-  typescriptOptions: {
-    typeCheck : 'strict'
   }
 });

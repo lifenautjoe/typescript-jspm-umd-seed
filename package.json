@@ -6,9 +6,9 @@
   "jspmPackage": true,
   "author": "Joel Hernandez",
   "scripts": {
-    "build:declarations" : "dts-generator -- --name typescript-jspm-seed --project . --exclude typings/**/*.d.ts --exclude src/**/*Spec.ts --exclude node_modules/**/*.ts --out dist/typescript-jspm-seed.d.ts",
+    "build:declarations": "dts-generator -- --name typescript-jspm-seed --project . --exclude typings/**/*.d.ts --exclude src/**/*Spec.ts --exclude node_modules/**/*.ts --out dist/typescript-jspm-seed.d.ts",
     "build:umd": "jspm build typescript-jspm-seed dist/typescript-jspm-seed.min.js --format umd --global-name typescriptJspmSeed --minify",
-    "build" : "npm-run-all build:umd build:declarations",
+    "build": "npm-run-all build:umd build:declarations",
     "test": "karma start karma.config.js",
     "browser-sync:dist": "browser-sync start --server dist",
     "serve:dist": "npm-run-all build browser-sync:dist",
@@ -41,22 +41,14 @@
   "jspm": {
     "name": "typescript-jspm-seed",
     "devDependencies": {
+      "buffer": "github:jspm/nodelibs-buffer@^0.2.0-alpha",
+      "fs": "github:jspm/nodelibs-fs@^0.2.0-alpha",
       "os": "github:jspm/nodelibs-os@^0.2.0-alpha",
-      "plugin-typescript": "github:frankwallis/plugin-typescript@^4.0.5"
+      "path": "github:jspm/nodelibs-path@^0.2.0-alpha",
+      "plugin-typescript": "github:frankwallis/plugin-typescript@^4.0.5",
+      "process": "github:jspm/nodelibs-process@^0.2.0-alpha",
+      "readline": "github:jspm/nodelibs-readline@^0.2.0-alpha"
     },
-    "peerDependencies": {},
-    "overrides": {
-      "npm:typescript@1.8.9": {
-        "browser": {},
-        "map": {
-          "buffer": "@empty",
-          "child_process": "@empty",
-          "fs": "@empty",
-          "path": "@empty",
-          "process": "@empty",
-          "readline": "@empty"
-        }
-      }
-    }
+    "peerDependencies": {}
   }
 }
