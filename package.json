@@ -49,6 +49,19 @@
       "process": "github:jspm/nodelibs-process@^0.2.0-alpha",
       "readline": "github:jspm/nodelibs-readline@^0.2.0-alpha"
     },
-    "peerDependencies": {}
+    "peerDependencies": {},
+    "overrides": {
+      "npm:typescript@1.8.10": {
+        "browser": {},
+        "map": {
+          "buffer": "@empty",
+          "child_process": "@empty",
+          "fs": "@empty",
+          "path": "@empty",
+          "process": "@empty",
+          "readline": "@empty"
+        }
+      }
+    }
   }
 }
