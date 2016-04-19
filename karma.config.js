@@ -24,7 +24,7 @@ module.exports = function (config) {
         },
         // karma-jspm plugin configuration
         jspm: {
-            // Wether to use existing jspm bundles (faster loading)
+            // Whether to use existing jspm bundles (faster loading)
             useBundles: true,
             // The jspm browser config file
             browser: "jspm.browser.js",
