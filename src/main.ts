@@ -1,2 +1,1 @@
 
-export {Square} from './Square';
