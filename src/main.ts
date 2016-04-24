@@ -1,1 +1,2 @@
 
+export {GreetingFactory} from './GreetingFactory';
