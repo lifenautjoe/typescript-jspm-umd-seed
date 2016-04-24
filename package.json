@@ -25,7 +25,7 @@
     "serve:dist": "npm-run-all bundle:dist browser-sync:dist",
     "serve:dev": "npm-run-all --parallel bundle:dev browser-sync:dev",
     "serve:docs": "npm-run-all build:docs browser-sync:docs",
-    "pretest" : "npm run bundle:dist",
+    "pretest": "npm run bundle:dist",
     "test": "karma start karma.config.js --single-run",
     "test:watch": "npm-run-all --parallel \"bundle:dev:watch\" \"karma start karma.config.js\""
   },
@@ -40,6 +40,7 @@
     "karma-phantomjs-launcher": "^1.0.0",
     "npm-run-all": "^1.7.0",
     "phantomjs-prebuilt": "^2.1.7",
+    "replace": "^0.3.0",
     "tslint-eslint-rules": "^1.2.0",
     "typedoc": "^0.3.12",
     "typescript": "^1.8.10"
