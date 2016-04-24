@@ -2,7 +2,8 @@
   "name": "typescript-jspm-seed",
   "version": "0.0.1",
   "description": "The bleeding edge stack",
-  "main": "dist/typescript-jspm-seed.min.js",
+  "main": "dist/typescript-jspm-seed.js",
+  "typings": "dist/typescript-jspm-seed.d.ts",
   "jspmPackage": true,
   "author": "Joel Hernandez",
   "scripts": {
