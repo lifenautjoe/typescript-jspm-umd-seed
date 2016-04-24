@@ -44,7 +44,6 @@
         "no-unused-expression" : true,
         "no-inferrable-types" : true,
         "no-internal-module": true,
-        "no-trailing-whitespace": true,
         "no-var-keyword": true,
         "no-unused-variable" : [
             true,
@@ -77,10 +76,6 @@
             "public-before-private",
             "static-before-instance",
             "variables-before-functions"
-        ],
-        "interface-name" :[
-            true,
-            "always-prefix"
         ],
         "max-line-length" : 100,
         "jsdoc-format" : true,
