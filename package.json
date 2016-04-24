@@ -19,14 +19,14 @@
     "bundle:dist": "jspm bundle typescript-jspm-seed storage/build.js",
     "bundle:dev": "jspm bundle typescript-jspm-seed storage/build.js -wid",
     "browser-sync:docs": "browser-sync start --server docs",
-    "browser-sync:dist": "browser-sync start --server dist",
-    "browser-sync:dev": "browser-sync start --server --files '*(*.js|*.html)'",
-    "pretest" : "npm run bundle:dist",
-    "test": "karma start karma.config.js --single-run",
-    "test:watch": "npm-run-all --parallel \"bundle:dev:watch\" \"karma start karma.config.js\"",
+    "browser-sync:dist": "browser-sync start --server",
+    "browser-sync:dev": "browser-sync start --server --files 'index.html|storage/build.js'",
     "serve:dist": "npm-run-all bundle:dist browser-sync:dist",
     "serve:dev": "npm-run-all --parallel bundle:dev browser-sync:dev",
-    "serve:docs": "npm-run-all docs browser-sync:docs"
+    "serve:docs": "npm-run-all docs browser-sync:docs",
+    "pretest" : "npm run bundle:dist",
+    "test": "karma start karma.config.js --single-run",
+    "test:watch": "npm-run-all --parallel \"bundle:dev:watch\" \"karma start karma.config.js\""
   },
   "devDependencies": {
     "browser-sync": "^2.11.2",
