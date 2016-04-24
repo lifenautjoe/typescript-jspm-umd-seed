@@ -7,7 +7,7 @@ SystemJS.config({
   },
   bundles: {
     "storage/build.js": [
-      "typescript-jspm-seed/main.ts",
+      "typescript-jspm-seed/index.ts",
       "typescript-jspm-seed/GreetingFactory.ts",
       "github:frankwallis/plugin-typescript@4.0.6.json"
     ]
