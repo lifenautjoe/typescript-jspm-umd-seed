@@ -5,11 +5,9 @@
     "module": "umd",
     "removeComments": true
   },
-  "exclude": [
-    "jspm_packages",
-    "dist",
-    "node_modules",
-    "storage",
-    "typings"
+  "files": [
+    "typings/main.d.ts",
+    "src/index.ts",
+    "src/GreetingFactory.ts"
   ]
 }
