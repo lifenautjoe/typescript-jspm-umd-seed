@@ -1,4 +1,5 @@
 
-/// <reference path="../typings/main.d.ts" />
 
-export {GreetingFactory} from './GreetingFactory';
+import {GreetingFactory} from './GreetingFactory';
+
+export default GreetingFactory;
