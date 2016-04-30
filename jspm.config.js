@@ -12,7 +12,8 @@ SystemJS.config({
     }
   },
   typescriptOptions: {
-    "typeCheck": "strict"
+    "typeCheck": "strict",
+    "tsconfig" : true
   }
 });
 
