@@ -1,11 +1,16 @@
 {
-  "compilerOptions": {
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "module": "system",
-    "removeComments": true
-  },
-  "files": [
-    "typings/main.d.ts"
-  ]
+    "compilerOptions": {
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "module": "system",
+        "removeComments": true
+    },
+    "files": [
+        "src/GreetingFactory.ts",
+        "src/main.ts"
+    ],
+    "filesGlob": [
+        "src/**/*.ts",
+        "!src/**/*Spec.ts"
+    ]
 }
