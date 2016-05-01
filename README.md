@@ -3,8 +3,6 @@
 
 A seed to create [UMD](https://github.com/umdjs/umd) [TypeScript](https://www.typescriptlang.org/) modules with [jspm](http://jspm.io/).
 
-Work in progress
-
 ## Stack
 
 * [jspm](http://jspm.io/)
