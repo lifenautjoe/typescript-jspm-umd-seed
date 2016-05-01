@@ -6,10 +6,12 @@
         "removeComments": true
     },
     "files": [
+        "typings/main.d.ts",
         "src/GreetingFactory.ts",
         "src/main.ts"
     ],
     "filesGlob": [
+        "typings/main.d.ts",
         "src/**/*.ts",
         "!src/**/*Spec.ts"
     ]
