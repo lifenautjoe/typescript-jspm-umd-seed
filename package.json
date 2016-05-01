@@ -45,6 +45,7 @@
     "phantomjs-prebuilt": "^2.1.7",
     "replace": "^0.3.0",
     "tsconfig-glob": "^0.4.3",
+    "tslint": "^3.8.1",
     "tslint-eslint-rules": "^1.2.0",
     "typescript": "^1.8.10"
   },
