@@ -6,8 +6,6 @@
     "removeComments": true
   },
   "files": [
-    "typings/main.d.ts",
-    "src/main.ts",
-    "src/GreetingFactory.ts"
+    "typings/main.d.ts"
   ]
 }
