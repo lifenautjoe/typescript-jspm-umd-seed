@@ -1,4 +1,2 @@
 
-import {GreetingFactory} from './GreetingFactory';
-
-export default GreetingFactory;
+export {GreetingFactory} from './GreetingFactory';
