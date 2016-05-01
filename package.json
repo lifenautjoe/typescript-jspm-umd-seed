@@ -18,7 +18,7 @@
     "dts:fix": "npm-run-all dts:fix:path dts:fix:entry",
     "dts:build": "dts-generator --name typescript-jspm-seed --project . --exclude typings/**/*.d.ts --exclude src/**/*Spec.ts --exclude node_modules/**/*.d.ts --exclude jspm_packages/**/*.d.ts --out dist/typescript-jspm-seed.d.ts",
     "build:dts": "npm-run-all dts:build dts:fix",
-    "build:ts": "jspm build typescript-jspm-seed dist/typescript-jspm-seed.js --format umd --global-name TypescriptJspmSeed",
+    "build:ts": "jspm build typescript-jspm-seed dist/typescript-jspm-seed.js --format umd --global-name TypeScriptJspmSeed",
     "build": "npm-run-all build:ts build:dts",
     "bundle:dist": "jspm bundle typescript-jspm-seed storage/build.js",
     "bundle:dev": "jspm bundle typescript-jspm-seed storage/build.js -wid",
