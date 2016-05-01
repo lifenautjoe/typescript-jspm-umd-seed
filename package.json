@@ -44,12 +44,14 @@
     "npm-run-all": "^1.7.0",
     "phantomjs-prebuilt": "^2.1.7",
     "replace": "^0.3.0",
+    "tsconfig-glob": "^0.4.3",
     "tslint-eslint-rules": "^1.2.0",
     "typedoc": "^0.3.12",
     "typescript": "^1.8.10"
   },
   "jspm": {
     "name": "typescript-jspm-umd-seed",
+    "dependencies": {},
     "devDependencies": {
       "buffer": "github:jspm/nodelibs-buffer@^0.2.0-alpha",
       "fs": "github:jspm/nodelibs-fs@^0.2.0-alpha",
