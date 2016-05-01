@@ -2,7 +2,7 @@
   "compilerOptions": {
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "module": "umd",
+    "module": "system",
     "removeComments": true
   },
   "files": [
