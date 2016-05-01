@@ -5,7 +5,7 @@ A seed to create [UMD](https://github.com/umdjs/umd) [TypeScript](https://www.ty
 
 ## Notable features
 
-* Automatic generation of type declarations file
+* Automatic generation of single type declarations file
 * Write your tests in TypeScript
 * Playground server
 
