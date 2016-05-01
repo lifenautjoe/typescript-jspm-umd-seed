@@ -20,7 +20,8 @@ module.exports = function (config) {
             '/src/': '/base/src/',
             '/jspm_packages/': '/base/jspm_packages/',
             '/typings/': '/base/typings/',
-            '/storage/': '/base/storage/'
+            '/storage/': '/base/storage/',
+            "/tsconfig.json": "/base/tsconfig.json"
         },
         // karma-jspm plugin configuration
         jspm: {
@@ -39,7 +40,8 @@ module.exports = function (config) {
             serveFiles: [
                 'src/**/*.+(ts)',
                 'storage/**/*.*',
-                'typings/**/*.*'
+                'typings/**/*.*',
+                "tsconfig.json"
             ]
         },
         // The files to be loaded in the page before jspm's
