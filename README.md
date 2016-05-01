@@ -1,4 +1,5 @@
 # typescript-jspm-seed
+[![Build Status](https://travis-ci.org/thefabulousdev/typescript-jspm-seed.svg?branch=master)](https://travis-ci.org/thefabulousdev/typescript-jspm-seed)
 
 A seed to create umd TypeScript modules with jspm.
 
