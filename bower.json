@@ -1,8 +1,8 @@
 {
-  "name": "typescript-jspm-seed",
+  "name": "typescript-jspm-umd-seed",
   "version": "0.0.1",
   "description": "The bleeding edge stack",
-  "main": "dist/typescript-jspm-seed.min.js",
+  "main": "dist/typescript-jspm-umd-seed.min.js",
   "authors": [
     "Joel Hernandez"
   ],

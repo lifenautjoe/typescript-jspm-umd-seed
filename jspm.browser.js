@@ -3,12 +3,12 @@ SystemJS.config({
   paths: {
     "github:*": "jspm_packages/github/*",
     "npm:*": "jspm_packages/npm/*",
-    "typescript-jspm-seed/": "src/"
+    "typescript-jspm-umd-seed/": "src/"
   },
   bundles: {
     "storage/build.js": [
-      "typescript-jspm-seed/main.ts",
-      "typescript-jspm-seed/GreetingFactory.ts",
+      "typescript-jspm-umd-seed/main.ts",
+      "typescript-jspm-umd-seed/GreetingFactory.ts",
       "github:frankwallis/plugin-typescript@4.0.6.json"
     ]
   }

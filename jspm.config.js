@@ -1,7 +1,7 @@
 SystemJS.config({
   transpiler: "plugin-typescript",
   packages: {
-    "typescript-jspm-seed": {
+    "typescript-jspm-umd-seed": {
       "main": "main.ts",
       "defaultExtension": "ts",
       "meta": {
