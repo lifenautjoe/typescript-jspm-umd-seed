@@ -1,6 +1,6 @@
 # typescript-jspm-seed
 
-A seed to create universal TypeScript context-free modules with jspm.
+A seed to create umd TypeScript modules with jspm.
 
 Work in progress
 ----------------
