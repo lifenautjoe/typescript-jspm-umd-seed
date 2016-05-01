@@ -4,10 +4,6 @@
 A seed to create [UMD](https://github.com/umdjs/umd) [TypeScript](https://www.typescriptlang.org/) modules with [jspm](http://jspm.io/).
 
 Work in progress
-----------------
-
-    The opposite of bravery is not cowardice but conformity. 
-    	- Robert Anthony
 
 ## Stack
 
