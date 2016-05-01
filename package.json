@@ -6,6 +6,7 @@
   "typings": "dist/typescript-jspm-umd-seed.d.ts",
   "jspmPackage": true,
   "author": "Joel Hernandez",
+  "license" : "MIT",
   "scripts": {
     "jspm": "jspm",
     "karma": "karma",
