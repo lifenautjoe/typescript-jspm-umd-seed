@@ -13,15 +13,13 @@
     "browser-sync": "browser-sync",
     "dts-generator": "dts-generator",
     "postinstall": "jspm install",
-    "dts:fix:path": "replace 'src/' 'typescript-jspm-seed/' dist/typescript-jspm-seed.d.ts",
-    "dts:fix:entry": "replace 'typescript-jspm-seed/index' 'typescript-jspm-seed' dist/typescript-jspm-seed.d.ts",
+    "dts:fix:path": "replace 'src/' '' dist/typescript-jspm-seed.d.ts",
+    "dts:fix:entry": "replace '/index' '' dist/typescript-jspm-seed.d.ts",
     "dts:fix": "npm-run-all dts:fix:path dts:fix:entry",
-    "dts:build": "dts-generator -- --name typescript-jspm-seed --project . --exclude typings/**/*.d.ts --exclude src/**/*Spec.ts --exclude node_modules/**/*.d.ts --exclude jspm_packages/**/*.d.ts --out dist/typescript-jspm-seed.d.ts",
-    "dts" : "npm-run-all dts:build dts:fix",
-    "build:docs": "typedoc --name 'typescript-jspm-seed' --readme README.md --mode modules --module amd --out docs src/index.ts --exclude src/**/*Spec.ts",
-    "build:dts": "dts-generator -- --name typescript-jspm-seed --project . --exclude typings/**/*.d.ts --exclude src/**/*Spec.ts --exclude node_modules/**/*.d.ts --exclude jspm_packages/**/*.d.ts --out dist/typescript-jspm-seed.d.ts",
+    "dts:build": "dts-generator --name typescript-jspm-seed --project . --exclude typings/**/*.d.ts --exclude src/**/*Spec.ts --exclude node_modules/**/*.d.ts --exclude jspm_packages/**/*.d.ts --out dist/typescript-jspm-seed.d.ts",
+    "build:dts": "npm-run-all dts:build dts:fix",
     "build:ts": "jspm build typescript-jspm-seed dist/typescript-jspm-seed.js --format umd --global-name TypescriptJspmSeed",
-    "build": "npm-run-all build:ts dts build:docs",
+    "build": "npm-run-all build:ts build:dts",
     "bundle:dist": "jspm bundle typescript-jspm-seed storage/build.js",
     "bundle:dev": "jspm bundle typescript-jspm-seed storage/build.js -wid",
     "browser-sync:docs": "browser-sync start --server docs",
@@ -75,5 +73,6 @@
         }
       }
     }
-  }
+  },
+  "dependencies": {}
 }
