@@ -14,7 +14,7 @@
     "dts-generator": "dts-generator",
     "postinstall": "jspm install",
     "dts:fix:path": "replace 'src/' '' dist/typescript-jspm-seed.d.ts",
-    "dts:fix:entry": "replace '/index' '' dist/typescript-jspm-seed.d.ts",
+    "dts:fix:entry": "replace '/main' '' dist/typescript-jspm-seed.d.ts",
     "dts:fix": "npm-run-all dts:fix:path dts:fix:entry",
     "dts:build": "dts-generator --name typescript-jspm-seed --project . --exclude typings/**/*.d.ts --exclude src/**/*Spec.ts --exclude node_modules/**/*.d.ts --exclude jspm_packages/**/*.d.ts --out dist/typescript-jspm-seed.d.ts",
     "build:dts": "npm-run-all dts:build dts:fix",

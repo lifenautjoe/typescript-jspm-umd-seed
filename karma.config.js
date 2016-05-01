@@ -33,7 +33,7 @@ module.exports = function (config) {
             config: "jspm.config.js",
             // The files to be loaded by jspm
             loadFiles: [
-                'src/index.ts',
+                'src/main.ts',
                 'src/**/*Spec.ts'
             ],
             // The files to be available to jspm but not loaded
