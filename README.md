@@ -1,7 +1,7 @@
-# typescript-jspm-seed
-[![Build Status](https://travis-ci.org/thefabulousdev/typescript-jspm-seed.svg?branch=master)](https://travis-ci.org/thefabulousdev/typescript-jspm-seed)
+# typescript-jspm-umd-seed
+[![Build Status](https://travis-ci.org/thefabulousdev/typescript-jspm-umd-seed.svg?branch=master)](https://travis-ci.org/thefabulousdev/typescript-jspm-seed)
 
-A seed to create umd TypeScript modules with jspm.
+A seed to create [UMD](https://github.com/umdjs/umd) [TypeScript](https://www.typescriptlang.org/) modules with [jspm](http://jspm.io/).
 
 Work in progress
 ----------------
@@ -26,7 +26,7 @@ Work in progress
 #### Clone the repository
 
 ``` sh
-git clone https://github.com/thefabulousdev/typescript-jspm-seed.git
+git clone https://github.com/thefabulousdev/typescript-jspm-umd-seed.git
 ```
 
 #### Install dependencies
