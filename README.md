@@ -15,6 +15,7 @@ A seed to create [UMD](https://github.com/umdjs/umd) [TypeScript](https://www.ty
 
 * [jspm](http://jspm.io/)
 * [TypeScript](https://www.typescriptlang.org/)
+* [tslint](https://github.com/palantir/tslint)
 * [Jasmine](https://jasmine.github.io/)
 * [Karma](https://karma-runner.github.io)
 * [BrowserSync](https://www.browsersync.io/)
