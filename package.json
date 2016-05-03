@@ -26,7 +26,7 @@
     "build:dts": "npm-run-all dts:build dts:fix",
     "build:ts": "jspm build typescript-jspm-umd-seed dist/typescript-jspm-umd-seed.js --format umd --global-name TypeScriptJspmUmdSeed",
     "build:tsconfig": "tsconfig .",
-    "build": "npm-run-all build:tsconfig build:ts build:dts",
+    "build": "npm-run-all build:tsconfig lint build:ts build:dts",
     "bundle:dist": "jspm bundle typescript-jspm-umd-seed storage/build.js",
     "bundle:dev": "jspm bundle typescript-jspm-umd-seed storage/build.js -wid",
     "browser-sync:dist": "browser-sync start --server",
