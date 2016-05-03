@@ -39,6 +39,8 @@ npm install
 
 * `npm run jspm` to access the jspm cli
 * `npm run typings` to access the typings cli
+* `npm run lint` to lint the library
+* `npm run lint:watch` to lint the library on watch mode
 * `npm run test` to test the library
 * `npm run test:watch` to test the library on watch mode
 * `npm run serve:dev` to launch a server on the source files
