@@ -7,9 +7,7 @@ A seed to create [UMD](https://github.com/umdjs/umd) [TypeScript](https://www.ty
 
 * Automatic generation of single type declarations file
 * Write your tests in TypeScript
-* Playground server
-
-*NOTE: It's mentioned as playground and not development server as I encourage you to build your library on a [BDD](https://en.wikipedia.org/wiki/Behavior-driven_development) or [TDD](https://en.wikipedia.org/wiki/Test-driven_development) approach, where you would be using the npm script `npm run test:watch` all of the time.*
+* Development server
 
 ## Stack
 
