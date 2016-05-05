@@ -1,7 +1,7 @@
 {
   "name": "typescript-jspm-umd-seed",
   "version": "0.0.1",
-  "description": "The bleeding edge stack",
+  "description": "Your golden ticket to the future, today.",
   "main": "dist/typescript-jspm-umd-seed.js",
   "typings": "dist/typescript-jspm-umd-seed.d.ts",
   "jspmPackage": true,
