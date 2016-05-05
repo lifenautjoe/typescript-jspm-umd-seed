@@ -6,7 +6,7 @@ SystemJS.config({
     "typescript-jspm-umd-seed/": "src/"
   },
   bundles: {
-    "storage/build.js": [
+    "storage/bundle.js": [
       "typescript-jspm-umd-seed/main.ts",
       "typescript-jspm-umd-seed/GreetingFactory.ts",
       "github:frankwallis/plugin-typescript@4.0.6.json"

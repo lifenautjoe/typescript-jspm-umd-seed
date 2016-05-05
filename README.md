@@ -3,6 +3,8 @@
 
 A seed to create [UMD](https://github.com/umdjs/umd) [TypeScript](https://www.typescriptlang.org/) modules with [jspm](http://jspm.io/).
 
+# Work In Progress
+
 ## Main features
 
 * Automatic generation of single type declarations file
