@@ -10,10 +10,12 @@
   "config": {
     "moduleName" : "typescript-jspm-umd-seed",
     "globalName" : "TypeScriptJspmUmdSeed",
+    "storageDir" : "storage/",
     "distDir" : "dist/",
     "sourceDir" : "src/",
     "sourceFiles" : "$npm_package_config_sourceDir**/*.ts",
     "sourceFilesDtsExclude" : "$npm_package_config_sourceDir**/*Spec.ts",
+    "bundleFileName" : "bundle.js",
     "karmaConfig" : "karma.config.js"
   },
   "scripts": {
@@ -36,10 +38,10 @@
     "build:ts": "jspm build $npm_package_config_moduleName $npm_package_config_distDir$npm_package_config_moduleName.js --format umd --global-name $npm_package_config_globalName",
     "build:tsconfig": "tsconfig .",
     "build": "npm-run-all build:tsconfig lint build:ts build:dts",
-    "bundle:dist": "jspm bundle $npm_package_config_moduleName storage/build.js",
-    "bundle:dev": "jspm bundle $npm_package_config_moduleName storage/build.js -wid",
+    "bundle:dist": "jspm bundle $npm_package_config_moduleName $npm_package_config_storageDir$npm_package_config_bundleFileName",
+    "bundle:dev": "jspm bundle $npm_package_config_moduleName $npm_package_config_storageDir$npm_package_config_bundleFileName -wid",
     "browser-sync:dist": "browser-sync start --server",
-    "browser-sync:dev": "browser-sync start --server --files 'index.html|storage/build.js'",
+    "browser-sync:dev": "browser-sync start --server --files 'index.html|$npm_package_config_storageDir$npm_package_config_bundleFileName'",
     "serve:dist": "npm-run-all bundle:dist browser-sync:dist",
     "serve:dev": "npm-run-all --parallel bundle:dev browser-sync:dev",
     "pretest": "npm run bundle:dist",
