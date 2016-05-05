@@ -46,7 +46,7 @@
     "serve:dev": "npm-run-all --parallel bundle:dev browser-sync:dev",
     "pretest": "npm run bundle:dist",
     "test": "karma start $npm_package_config_karmaConfigFile --single-run",
-    "test:watch": "npm-run-all --parallel \"bundle:dev:watch\" \"karma start $npm_package_config_karmaConfigFile\""
+    "test:watch": "npm-run-all --parallel \"bundle:dev\" \"karma start $npm_package_config_karmaConfigFile\""
   },
   "devDependencies": {
     "browser-sync": "^2.11.2",
