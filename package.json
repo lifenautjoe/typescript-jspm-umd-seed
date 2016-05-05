@@ -13,7 +13,8 @@
     "distDir" : "dist/",
     "sourceDir" : "src/",
     "sourceFiles" : "$npm_package_config_sourceDir**/*.ts",
-    "sourceFilesDtsExclude" : "$npm_package_config_sourceDir**/*Spec.ts"
+    "sourceFilesDtsExclude" : "$npm_package_config_sourceDir**/*Spec.ts",
+    "karmaConfig" : "karma.config.js"
   },
   "scripts": {
     "jspm": "jspm",
@@ -42,8 +43,8 @@
     "serve:dist": "npm-run-all bundle:dist browser-sync:dist",
     "serve:dev": "npm-run-all --parallel bundle:dev browser-sync:dev",
     "pretest": "npm run bundle:dist",
-    "test": "karma start karma.config.js --single-run",
-    "test:watch": "npm-run-all --parallel \"bundle:dev:watch\" \"karma start karma.config.js\""
+    "test": "karma start $npm_package_config_karmaConfig --single-run",
+    "test:watch": "npm-run-all --parallel \"bundle:dev:watch\" \"karma start $npm_package_config_karmaConfig\""
   },
   "devDependencies": {
     "browser-sync": "^2.11.2",
