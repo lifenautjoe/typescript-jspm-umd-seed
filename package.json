@@ -41,7 +41,7 @@
     "bundle:dist": "jspm bundle $npm_package_config_moduleName $npm_package_config_storageDir$npm_package_config_bundleFileName",
     "bundle:dev": "jspm bundle $npm_package_config_moduleName $npm_package_config_storageDir$npm_package_config_bundleFileName -wid",
     "browser-sync:dist": "browser-sync start --server",
-    "browser-sync:dev": "browser-sync start --server --files 'index.html|$npm_package_config_storageDir$npm_package_config_bundleFileName'",
+    "browser-sync:dev": "browser-sync start --server --files \"index.html|$npm_package_config_storageDir$npm_package_config_bundleFileName\"",
     "serve:dist": "npm-run-all bundle:dist browser-sync:dist",
     "serve:dev": "npm-run-all --parallel bundle:dev browser-sync:dev",
     "pretest": "npm run bundle:dist",
