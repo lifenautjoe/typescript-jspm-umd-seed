@@ -8,7 +8,10 @@
   "author": "Joel Hernandez",
   "license": "MIT",
   "config": {
-    "globalName" : "TypeScriptJspmUmdSeed"
+    "globalName" : "TypeScriptJspmUmdSeed",
+    "sourceDir" : "src/",
+    "sourceFiles" : "$npm_package_config_sourceDir**/*.ts",
+    "sourceFilesDtsExclude" : "$npm_package_config_sourceDir**/*Spec.ts"
   },
   "scripts": {
     "jspm": "jspm",
@@ -20,12 +23,12 @@
     "onchange": "onchange",
     "tslint": "tslint",
     "postinstall": "jspm install",
-    "lint": "npm run tslint -- -c tslint.json src/**/*.ts",
-    "lint:watch": "onchange 'src/**/*.ts' -- npm run lint",
-    "dts:fix:path": "replace 'src/' '' dist/typescript-jspm-umd-seed.d.ts",
+    "lint": "npm run tslint -- -c tslint.json $npm_package_config_sourceFiles",
+    "lint:watch": "onchange $npm_package_config_sourceFiles -- npm run lint",
+    "dts:fix:path": "replace $npm_package_config_sourceDir '' dist/typescript-jspm-umd-seed.d.ts",
     "dts:fix:entry": "replace '/main' '' dist/typescript-jspm-umd-seed.d.ts",
     "dts:fix": "npm-run-all dts:fix:path dts:fix:entry",
-    "dts:build": "dts-generator --name typescript-jspm-umd-seed --project . --exclude 'typings/**/*.d.ts' --exclude 'src/**/*Spec.ts' --exclude 'node_modules/**/*.d.ts' --exclude 'jspm_packages/**/*.d.ts' --out dist/typescript-jspm-umd-seed.d.ts",
+    "dts:build": "dts-generator --name typescript-jspm-umd-seed --project . --exclude 'typings/**/*.d.ts' --exclude '$npm_package_config_sourceFilesDtsExclude' --exclude 'node_modules/**/*.d.ts' --exclude 'jspm_packages/**/*.d.ts' --out dist/typescript-jspm-umd-seed.d.ts",
     "build:dts": "npm-run-all dts:build dts:fix",
     "build:ts": "jspm build typescript-jspm-umd-seed dist/typescript-jspm-umd-seed.js --format umd --global-name $npm_package_config_globalName",
     "build:tsconfig": "tsconfig .",
