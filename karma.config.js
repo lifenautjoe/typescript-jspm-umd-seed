@@ -2,10 +2,6 @@
 
 module.exports = function (config) {
     config.set({
-        // Restart karma as soon as a change is detected
-        restartOnFileChange : true,
-        // Do not auto watch files
-        autoWatch : false,
         // The browsers to be spawned by karma
         browsers : [
             'PhantomJS'
@@ -37,7 +33,6 @@ module.exports = function (config) {
             config: "jspm.config.js",
             // The files to be loaded by jspm
             loadFiles: [
-                'src/main.ts',
                 'src/**/*Spec.ts'
             ],
             // The files to be available to jspm but not loaded
