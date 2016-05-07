@@ -2,6 +2,10 @@
 
 module.exports = function (config) {
     config.set({
+        // Restart karma as soon as a change is detected
+        restartOnFileChange : true,
+        // Do not auto watch files
+        autoWatch : false,
         // The browsers to be spawned by karma
         browsers : [
             'PhantomJS'
@@ -13,7 +17,7 @@ module.exports = function (config) {
         // The frameworks employed by karma
         frameworks: [
             'jspm',
-             'jasmine'
+            'jasmine'
         ],
         // karma-jspm plugin bug fix
         proxies: {
