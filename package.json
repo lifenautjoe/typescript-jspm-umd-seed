@@ -42,15 +42,15 @@
     "build:tsconfig": "tsconfig .",
     "build": "npm-run-all build:tsconfig lint build:ts build:dts",
     "bundle:dist": "jspm bundle $npm_package_config_moduleName $npm_package_config_storageDir$npm_package_config_bundleFileName",
-    "bundle:dist:watch": "npm run bundle:dist -- -w",
     "bundle:dev": "jspm bundle $npm_package_config_moduleName $npm_package_config_storageDir$npm_package_config_bundleFileName -id",
+    "bundle:dev:watch": "npm run bundle:dev -- -w",
     "browser-sync:dist": "browser-sync start --server",
     "browser-sync:dev": "browser-sync start --server --files \"index.html|$npm_package_config_storageDir$npm_package_config_bundleFileName\"",
     "serve:dist": "npm-run-all bundle:dist browser-sync:dist",
     "serve:dev": "npm-run-all --parallel bundle:dev browser-sync:dev",
     "test" : "npm run bundle:dist && npm run karma:run:once",
     "pretest:watch": "npm run bundle:dist",
-    "test:watch": "npm run bundle:dist:watch & npm run karma:run:watch"
+    "test:watch": "npm run bundle:dev:watch & npm run karma:run:watch"
   },
   "devDependencies": {
     "browser-sync": "^2.11.2",
