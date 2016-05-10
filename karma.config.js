@@ -2,6 +2,8 @@
 
 module.exports = function (config) {
     config.set({
+        // For auto watching which is used on npm run test:watch, we use scripts/test-watch.js
+        autoWatch : false,
         // The browsers to be spawned by karma
         browsers : [
             'PhantomJS'
