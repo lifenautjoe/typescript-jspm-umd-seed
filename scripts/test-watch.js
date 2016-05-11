@@ -2,56 +2,102 @@
 /**
  * A script to adapt the jspm watching and bundling files to the karma continuous testing workflow.
  * If in the future jspm provides an api to watch files without a starting bundling job or the jspm karma plugin
- * supports per pattern customization this should be removed.
+ * supports per pattern watch flags this should be removed.
  */
 'use strict';
 
 var path = require('path');
+var chokidar = require('chokidar');
+var Promise = require('bluebird');
 var KarmaServer = require('karma').Server;
 var childProcessExec = require('child_process').exec;
+var JspmBuilder = require('jspm').Builder;
+var jspmBuilder = new JspmBuilder();
 
 var karmaRunnerRunCmd = 'npm run karma:runner:run';
-var jspmBundleCmd = 'npm run bundle:dev';
-var jspmBundleWatchCmd = 'bundle:dev:watch';
 
 var projectPath = path.join(__dirname,'..');
+
+var projectBundlePath = path.join(projectPath,'storage');
+var projectBundleFileName = 'bundle.js';
+var projectBundleFilePath = path.join(projectBundlePath,projectBundleFileName);
+
+var projectSourcePath = path.join(projectPath,'src');
+var projectSpecsPattern = path.join(projectSourcePath,'**/*Spec.ts');
+var projectSourcePattern = path.join(projectSourcePath,'**/*.ts');
+
 var karmaConfigFile = path.join(projectPath,'karma.config.js');
 
-function onExecStderr(stderr){
-    console.log('stderr: ' + stderr);
+function onError(err){
+    console.log(err) && process.exit(1);
 }
 
-function onExeStdout(stdout){
-    console.log('stdout: ' + stdout);
+function makeServer(configFile,onReady){
+    return new Promise(function(resolve, reject){
+        var resolved;
+        var server = new KarmaServer({
+            configFile : configFile
+        }, function(exitCode) {
+            reject('Karma has exited with ' + exitCode);
+        });
+
+        server.on('browsers_ready',function () {
+            // There is no server_ready event..
+            if(!resolved) {
+                resolve(server);
+                resolved = true;
+            }
+            onReady();
+        });
+
+        server.start();
+    });
 }
 
-function onExecError(error){
-    console.log('error: ' + error) && process.exit(error);
-}
-
-function handleExecArgs(error,stdout,stderr){
-    if(stderr) onExecStderr(stderr);
-    if(stdout) onExeStdout(stdout);
-    if(error) onExecError(error);
-}
-
-function runTests(){
+function runSpecs(){
     childProcessExec(karmaRunnerRunCmd);
 }
 
-childProcessExec(jspmBundleCmd, function() {
-    handleExecArgs.apply(null,arguments);
-
-    var server = new KarmaServer({
-        configFile : karmaConfigFile
-    }, function(exitCode) {
-        console.log('Karma has exited with ' + exitCode);
-        process.exit(exitCode)
+function bundlePackage(){
+    return jspmBuilder.bundle('typescript-jspm-umd-seed', projectBundleFilePath, {
+        sourceMaps : true,
+        mangle: false
     });
+}
 
-    server.on('browsers_ready',function () {
-        runTests();
+function setSourceWatcher(){
+    chokidar.watch(projectSourcePattern,{
+        ignored : projectSpecsPattern
+    }).on('change',function(file){
+        console.info(['Source file',file,'has changed, re-bundling package'].join(' '));
+        bundlePackage().catch(onError);
     });
+}
 
-    server.start();
-});
+function setBundleWatcher(server){
+    chokidar.watch(projectBundleFilePath).on('change',function () {
+        console.info('Bundle changed, re-running specs');
+        server.refreshFiles().then(function(){
+            runSpecs();
+        }).catch(onError);
+    });
+}
+
+function setSpecsWatcher(){
+    chokidar.watch(projectSpecsPattern).on('change',function (file) {
+        console.info(['Spec file',file,'has changed, re-running specs'].join(' '));
+        runSpecs();
+    });
+}
+
+function setWatchers(server){
+    setBundleWatcher(server);
+    setSpecsWatcher();
+    setSourceWatcher();
+}
+
+bundlePackage().then(function() {
+    return makeServer(karmaConfigFile,runSpecs);
+}).then(function(server){
+    setWatchers(server);
+}).catch(onError);
