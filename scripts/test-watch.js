@@ -61,6 +61,7 @@ function runSpecs(){
 function bundlePackage(){
     return jspmBuilder.bundle('typescript-jspm-umd-seed', projectBundleFilePath, {
         sourceMaps : true,
+        injectConfig: true,
         mangle: false
     });
 }
