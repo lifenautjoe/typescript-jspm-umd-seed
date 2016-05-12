@@ -12,7 +12,6 @@ var Promise = require('bluebird');
 var KarmaServer = require('karma').Server;
 var childProcessExec = require('child_process').exec;
 var JspmBuilder = require('jspm').Builder;
-var jspmBuilder = new JspmBuilder();
 
 var karmaRunnerRunCmd = 'npm run karma:runner:run';
 
@@ -27,6 +26,7 @@ var projectSpecsPattern = path.join(projectSourcePath,'**/*Spec.ts');
 var projectSourcePattern = path.join(projectSourcePath,'**/*.ts');
 
 var karmaConfigFile = path.join(projectPath,'karma.config.js');
+var jspmConfigFile = path.join(projectPath,'jspm.config.js');
 
 function onError(err){
     console.log(err) && process.exit(1);
@@ -59,10 +59,9 @@ function runSpecs(){
 }
 
 function bundlePackage(){
-    return jspmBuilder.bundle('typescript-jspm-umd-seed', projectBundleFilePath, {
-        sourceMaps : true,
-        injectConfig: true,
-        mangle: false
+    var jspmBuilder = new JspmBuilder();
+    return jspmBuilder.loadConfig(jspmConfigFile).then(function () {
+        return jspmBuilder.bundle('typescript-jspm-umd-seed', projectBundleFilePath);
     });
 }
 
