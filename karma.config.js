@@ -2,6 +2,8 @@
 
 module.exports = function (config) {
     config.set({
+        // For auto watching which is used on npm run test:watch, we use scripts/test-watch.js
+        autoWatch : false,
         // The browsers to be spawned by karma
         browsers : [
             'PhantomJS'
@@ -13,7 +15,7 @@ module.exports = function (config) {
         // The frameworks employed by karma
         frameworks: [
             'jspm',
-             'jasmine'
+            'jasmine'
         ],
         // karma-jspm plugin bug fix
         proxies: {
@@ -33,7 +35,6 @@ module.exports = function (config) {
             config: "jspm.config.js",
             // The files to be loaded by jspm
             loadFiles: [
-                'src/main.ts',
                 'src/**/*Spec.ts'
             ],
             // The files to be available to jspm but not loaded
