@@ -12,26 +12,11 @@ var chokidar = require('chokidar');
 var Promise = require('bluebird');
 var KarmaServer = require('karma').Server;
 var JspmBuilder = require('jspm').Builder;
-var cli = require('cli');
-var karmaRunnerRun = require('./karma-runner-run/karma-runner-run');
+var karmaRunnerRun = require('./../karma-runner-run/karma-runner-run');
 
-cli.parse({
-    src: ['A glob pattern to match source files which trigger a run on changed', 'string'],
-    srcExclude: ['A glob pattern to exclude source files', 'string'],
-    specs: ['A glob pattern to match specification files which trigger a run on changed', 'string'],
-    specsExclude: ['A glob pattern to exclude specification files', 'string'],
-    bundleDest: ['The destination of the generated bundle', 'string'],
-    karmaConfigFile: ['The karma configuration file within the project directory', 'string', 'karma.config.js'],
-    jspmConfigFile: ['The jspm configuration file within the project directory', 'jspm.config.js'],
-    hostname: ['h', 'The karma server hostname', 'string', 'localhost'],
-    urlRoot: ['u', 'The karma server url root', 'string', '/'],
-    port: ['p', 'The karma server port', 'int', 9876],
-    failOnEmptyTestSuite: ['f', 'Whether the process should exit on empty specs', 'true', false]
-});
+module.exports = function (options) {
 
-
-cli.main(function (args, options) {
-
+    var logger = options.logger || console;
     var src = options.src;
     var srcExclude = options.srcExclude;
     var specs = options.specs;
@@ -51,7 +36,7 @@ cli.main(function (args, options) {
     };
 
     function onError(err) {
-        cli.fatal(err);
+        logger.fatal(err);
     }
 
     function makeServer(configFile, onReady) {
@@ -95,14 +80,14 @@ cli.main(function (args, options) {
         chokidar.watch(src, {
             ignored: srcExclude
         }).on('change', function (file) {
-            cli.info(['Source file', file, 'has changed, re-bundling package'].join(' '));
+            logger.info(['Source file', file, 'has changed, re-bundling package'].join(' '));
             bundlePackage().catch(onError);
         });
     }
 
     function setBundleWatcher(server) {
         chokidar.watch(bundleDest).on('change', function () {
-            cli.info('Bundle changed, re-running specs');
+            logger.info('Bundle changed, re-running specs');
             server.refreshFiles().then(function () {
                 return runSpecs();
             }).catch(onError);
@@ -113,7 +98,7 @@ cli.main(function (args, options) {
         chokidar.watch(specs, {
             ignored: specsExclude
         }).on('change', function (file) {
-            cli.info(['Spec file', file, 'has changed, re-running specs'].join(' '));
+            logger.info(['Spec file', file, 'has changed, re-running specs'].join(' '));
             runSpecs().catch(onError);
         });
     }
@@ -129,4 +114,4 @@ cli.main(function (args, options) {
     }).then(function (server) {
         setWatchers(server);
     }).catch(onError);
-});
+};
