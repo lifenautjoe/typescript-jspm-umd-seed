@@ -20,5 +20,5 @@ cli.parse({
 });
 
 cli.main(function (args, options) {
-    testWatch.start(options);
+    testWatch(options);
 });
