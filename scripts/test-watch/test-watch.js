@@ -36,7 +36,7 @@ module.exports = function (options) {
     };
 
     function onError(err) {
-        logger.fatal(err);
+        logger.error(err) && process.exit(1);
     }
 
     function makeServer(configFile, onReady) {
