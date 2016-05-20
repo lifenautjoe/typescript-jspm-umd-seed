@@ -9,13 +9,12 @@
 
 var path = require('path');
 var chokidar = require('chokidar');
-var Promise = require('bluebird');
 var KarmaServer = require('karma').Server;
 var JspmBuilder = require('jspm').Builder;
 var karmaRunnerRun = require('./../karma-runner-run/karma-runner-run');
+var Promise = require('bluebird');
 
 module.exports = function (options) {
-
     var logger = options.logger || console;
     var src = options.src;
     var srcExclude = options.srcExclude;
@@ -34,10 +33,6 @@ module.exports = function (options) {
         port: port,
         failOnEmptyTestSuite: failOnEmptyTestSuite
     };
-
-    function onError(err) {
-        logger.error(err) && process.exit(1);
-    }
 
     function makeServer(configFile, onReady) {
         return new Promise(function (resolve, reject) {
@@ -77,41 +72,56 @@ module.exports = function (options) {
     }
 
     function setSourceWatcher() {
-        chokidar.watch(src, {
-            ignored: srcExclude
-        }).on('change', function (file) {
-            logger.info(['Source file', file, 'has changed, re-bundling package'].join(' '));
-            bundlePackage().catch(onError);
+        return new Promise(function (resolve, reject) {
+            chokidar.watch(src, {
+                ignored: srcExclude
+            }).on('change', function (file) {
+                logger.info(['Source file', file, 'has changed, re-bundling package'].join(' '));
+                bundlePackage().catch(function (err) {
+                    reject(err);
+                });
+            });
         });
     }
 
     function setBundleWatcher(server) {
-        chokidar.watch(bundleDest).on('change', function () {
-            logger.info('Bundle changed, re-running specs');
-            server.refreshFiles().then(function () {
-                return runSpecs();
-            }).catch(onError);
+        return new Promise(function (resolve, reject) {
+            chokidar.watch(bundleDest).on('change', function () {
+                logger.info('Bundle changed, re-running specs');
+                server.refreshFiles().then(function () {
+                    return runSpecs();
+                }).catch(function (err) {
+                    reject(err);
+                });
+            });
         });
     }
 
     function setSpecsWatcher() {
-        chokidar.watch(specs, {
-            ignored: specsExclude
-        }).on('change', function (file) {
-            logger.info(['Spec file', file, 'has changed, re-running specs'].join(' '));
-            runSpecs().catch(onError);
+        return new Promise(function (resolve, reject) {
+            chokidar.watch(specs, {
+                ignored: specsExclude
+            }).on('change', function (file) {
+                logger.info(['Spec file', file, 'has changed, re-running specs'].join(' '));
+                runSpecs().catch(function (err) {
+                    reject(err);
+                });
+            });
         });
     }
 
     function setWatchers(server) {
-        setBundleWatcher(server);
-        setSpecsWatcher();
-        setSourceWatcher();
+        return Promise.join(
+            setBundleWatcher(server),
+            setSpecsWatcher(),
+            setSourceWatcher()
+        );
+
     }
 
-    bundlePackage().then(function () {
+    return bundlePackage().then(function () {
         return makeServer(karmaConfigFile, runSpecs);
     }).then(function (server) {
-        setWatchers(server);
-    }).catch(onError);
+        return setWatchers(server);
+    });
 };
