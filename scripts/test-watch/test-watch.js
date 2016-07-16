@@ -36,6 +36,14 @@ var Promise = require('bluebird');
  * @param{boolean} options.failOnEmptyTestSuite
  */
 module.exports = function (options) {
+
+    if(!options) return Promise.reject(new Error('options argument not given'));
+    if(!options.karmaRunnerConfig) return Promise.reject(new Error('options.karmaRunnerConfig argument not given'));
+    if(!options.bundleDest) return Promise.reject(new Error('options.bundleDest argument not given'));
+    if(!options.bundlePackage) return Promise.reject(new Error('options.bundlePackage argument not given'));
+    if(!options.bundleSrc) return Promise.reject(new Error('options.bundleSrc argument not given'));
+    if(!options.testsSrc) return Promise.reject(new Error('options.testsSrc argument not given'));
+
     var logger = options.logger || console;
 
     function makeServer(options, onReady) {
