@@ -38,10 +38,6 @@ var Promise = require('bluebird');
 module.exports = function (options) {
     var logger = options.logger || console;
 
-    function onError(err) {
-        logger.error(err) && process.exit(1);
-    }
-
     function makeServer(options, onReady) {
         return new Promise(function (resolve, reject) {
             var resolved;
@@ -106,9 +102,9 @@ module.exports = function (options) {
         setSourceWatcher(options);
     }
 
-    bundlePackage(options).then(function () {
+    return bundlePackage(options).then(function () {
         return makeServer(options, runSpecs);
     }).then(function (server) {
         setWatchers(server, options);
-    }).catch(onError);
+    });
 };

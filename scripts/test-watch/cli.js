@@ -29,5 +29,7 @@ cli.parse({
 });
 
 cli.main(function (args, options) {
-    testWatch(options);
+    testWatch(options).catch(function (err) {
+        cli.fatal(err);
+    });
 });
