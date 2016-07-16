@@ -8,8 +8,6 @@ var testWatch = require('./test-watch');
 cli.parse({
     // e.g. ./karma.config.js
     jspmConfig: ['j', 'The path to the jspm configuration file', 'string'],
-    // e.g. npm run karma:runner:run
-    karmaRunnerRunCmd: ['k', 'The command to make the karma runner run', 'string'],
     // e.g. ./karma.config.js
     karmaRunnerConfig: ['c', 'The path to the karma runner configuration file', 'string'],
     // e.g. ./storage/bundle.js

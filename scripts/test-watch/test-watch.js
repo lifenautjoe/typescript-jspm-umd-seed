@@ -24,7 +24,6 @@ var Promise = require('bluebird');
 
 /**
  * @param {Object} options
- * @param {string} options.karmaRunnerRunCmd
  * @param {string} options.karmaRunnerConfig
  * @param {string} options.bundleDest
  * @param {string} options.bundlePackage
