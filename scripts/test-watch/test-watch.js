@@ -25,6 +25,7 @@ var Promise = require('bluebird');
 /**
  * @param {Object} options
  * @param {string} options.karmaRunnerConfig
+ * @param {string} options.jspmConfig
  * @param {string} options.bundleDest
  * @param {string} options.bundlePackage
  * @param {string} options.bundleSrc
@@ -37,12 +38,16 @@ var Promise = require('bluebird');
  */
 module.exports = function (options) {
 
-    if(!options) return Promise.reject(new Error('options argument not given'));
-    if(!options.karmaRunnerConfig) return Promise.reject(new Error('options.karmaRunnerConfig argument not given'));
-    if(!options.bundleDest) return Promise.reject(new Error('options.bundleDest argument not given'));
-    if(!options.bundlePackage) return Promise.reject(new Error('options.bundlePackage argument not given'));
-    if(!options.bundleSrc) return Promise.reject(new Error('options.bundleSrc argument not given'));
-    if(!options.testsSrc) return Promise.reject(new Error('options.testsSrc argument not given'));
+    if (!options) return Promise.reject(new Error('options argument not given'));
+    if (!options.karmaRunnerConfig) return Promise.reject(new Error('options.karmaRunnerConfig argument not given'));
+    if (!options.jspmConfig) return Promise.reject(new Error('options.jspmConfig argument not given'));
+    if (!options.bundleDest) return Promise.reject(new Error('options.bundleDest argument not given'));
+    if (!options.bundlePackage) return Promise.reject(new Error('options.bundlePackage argument not given'));
+    if (!options.bundleSrc) return Promise.reject(new Error('options.bundleSrc argument not given'));
+    if (!options.testsSrc) return Promise.reject(new Error('options.testsSrc argument not given'));
+
+    options.jspmConfig = path.join(process.cwd(), options.jspmConfig);
+    options.karmaRunnerConfig = path.join(process.cwd(), options.karmaRunnerConfig);
 
     var logger = options.logger || console;
 
@@ -69,7 +74,7 @@ module.exports = function (options) {
     }
 
     function runSpecs(options) {
-        karmaRunnerRun(options);
+        return karmaRunnerRun(options);
     }
 
     function bundlePackage(options) {
@@ -80,39 +85,57 @@ module.exports = function (options) {
     }
 
     function setSourceWatcher(options) {
-        chokidar.watch(options.bundleSrc, {
-            ignored: options.testsSrc
-        }).on('change', function (file) {
-            logger.info(['Source file', file, 'has changed, re-bundling package'].join(' '));
-            bundlePackage(options).catch(onError);
+        return new Promise(function (resolve, reject) {
+            chokidar.watch(options.bundleSrc, {
+                ignored: options.testsSrc
+            }).on('change', function (file) {
+                logger.info(['Source file', file, 'has changed, re-bundling package'].join(' '));
+                bundlePackage(options).catch(function (error) {
+                    reject(error);
+                });
+            });
         });
+
     }
 
     function setBundleWatcher(server, options) {
-        chokidar.watch(options.bundleDest).on('change', function () {
-            logger.info('Bundle changed, re-running specs');
-            server.refreshFiles().then(function () {
-                runSpecs(options);
-            }).catch(onError);
+        return new Promise(function (resolve, reject) {
+            chokidar.watch(options.bundleDest).on('change', function () {
+                logger.info('Bundle changed, re-running specs');
+                server.refreshFiles().then(function () {
+                    return runSpecs(options);
+                }).catch(function (error) {
+                    reject(error);
+                });
+            });
         });
+
     }
 
     function setSpecsWatcher(options) {
-        chokidar.watch(options.testsSrc).on('change', function (file) {
-            logger.info(['Spec file', file, 'has changed, re-running specs'].join(' '));
-            runSpecs(options);
+        return new Promise(function (resolve, reject) {
+            chokidar.watch(options.testsSrc).on('change', function (file) {
+                logger.info(['Spec file', file, 'has changed, re-running specs'].join(' '));
+                runSpecs(options).catch(function (error) {
+                    reject(error);
+                })
+            });
         });
     }
 
     function setWatchers(server, options) {
-        setBundleWatcher(server, options);
-        setSpecsWatcher(options);
-        setSourceWatcher(options);
+        return Promise.join(
+            setBundleWatcher(server, options),
+            setSpecsWatcher(options),
+            setSourceWatcher(options)
+        )
     }
 
     return bundlePackage(options).then(function () {
-        return makeServer(options, runSpecs);
+        return makeServer(options, function () {
+            return runSpecs(options);
+        });
     }).then(function (server) {
-        setWatchers(server, options);
+        return setWatchers(server, options);
     });
 };

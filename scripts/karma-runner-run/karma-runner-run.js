@@ -38,7 +38,6 @@ module.exports = function karmaRunnerRun(options) {
     if(!options.hostname) return Promise.reject(new Error('options.hostname argument not given'));
     if(!options.urlRoot) return Promise.reject(new Error('options.urlRoot argument not given'));
     if(!options.port) return Promise.reject(new Error('options.port argument not given'));
-    if(!options.failOnEmptyTestSuite) return Promise.reject(new Error('options.failOnEmptyTestSuite argument not given'));
 
     var logger = options.logger || console;
 
@@ -64,7 +63,8 @@ module.exports = function karmaRunnerRun(options) {
             });
 
             response.on('end', function () {
-                exitCode ? reject(new Error(resultMessage)) : resolve(resultMessage);
+                resolve(resultMessage);
+                //exitCode ? reject(new Error(resultMessage)) : resolve(resultMessage);
             })
         });
 

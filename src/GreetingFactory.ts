@@ -1,5 +1,6 @@
 export class GreetingFactory {
     static make(name: string) {
-        return `Hello, ${name}`;
+        return `Hellosssss, ${name}`;
+
     }
 }

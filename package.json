@@ -10,13 +10,14 @@
   "config": {
     "moduleName": "typescript-jspm-umd-seed",
     "globalName": "TypeScriptJspmUmdSeed",
-    "storageDir": "storage/",
     "distDir": "dist/",
     "sourceDir": "src/",
     "sourceFiles": "**/*.ts",
-    "sourceFilesDtsExclude": "**/*Spec.ts",
-    "bundleFileName": "bundle.js",
-    "karmaConfigFile": "karma.config.js"
+    "testsDir": "src/",
+    "testsFiles": "**/*Spec.ts",
+    "bundleFile": "storage/bundle.js",
+    "karmaConfigFile": "./karma.config.js",
+    "jspmConfigFile": "./jspm.config.js"
   },
   "scripts": {
     "jspm": "jspm",
@@ -37,20 +38,20 @@
     "dts:fix:path": "replace $npm_package_config_sourceDir '' $npm_package_config_distDir$npm_package_config_moduleName.d.ts",
     "dts:fix:entry": "replace '/main' '' $npm_package_config_distDir$npm_package_config_moduleName.d.ts",
     "dts:fix": "npm-run-all dts:fix:path dts:fix:entry",
-    "dts:build": "dts-generator --name $npm_package_config_moduleName --project . --exclude 'typings/**/*.d.ts' --exclude $npm_package_config_sourceDir$npm_package_config_sourceFilesDtsExclude --exclude 'node_modules/**/*.d.ts' --exclude 'jspm_packages/**/*.d.ts' --out $npm_package_config_distDir$npm_package_config_moduleName.d.ts",
+    "dts:build": "dts-generator --name $npm_package_config_moduleName --project . --exclude 'typings/**/*.d.ts' --exclude $npm_package_config_testsDir$npm_package_config_testsFiles --exclude 'node_modules/**/*.d.ts' --exclude 'jspm_packages/**/*.d.ts' --out $npm_package_config_distDir$npm_package_config_moduleName.d.ts",
     "build:dts": "npm-run-all dts:build dts:fix",
     "build:ts": "jspm build $npm_package_config_moduleName $npm_package_config_distDir$npm_package_config_moduleName.js --format umd --global-name $npm_package_config_globalName",
     "build:tsconfig": "tsconfig .",
     "build": "npm-run-all build:tsconfig lint build:ts build:dts",
-    "bundle:dist": "jspm bundle $npm_package_config_moduleName $npm_package_config_storageDir$npm_package_config_bundleFileName",
-    "bundle:dev": "jspm bundle $npm_package_config_moduleName $npm_package_config_storageDir$npm_package_config_bundleFileName -id",
+    "bundle:dist": "jspm bundle $npm_package_config_moduleName $npm_package_config_bundleFile",
+    "bundle:dev": "jspm bundle $npm_package_config_moduleName $npm_package_config_bundleFile -id",
     "bundle:dev:watch": "npm run bundle:dev -- -w",
     "browser-sync:dist": "browser-sync start --server",
-    "browser-sync:dev": "browser-sync start --server --files \"index.html|$npm_package_config_storageDir$npm_package_config_bundleFileName\"",
+    "browser-sync:dev": "browser-sync start --server --files \"index.html|$npm_package_config_bundleFile\"",
     "serve:dist": "npm-run-all bundle:dist browser-sync:dist",
     "serve:dev": "npm-run-all --parallel bundle:dev browser-sync:dev",
     "test": "npm run bundle:dist && npm run karma:run:once",
-    "test:watch": "node scripts/test-watch.js"
+    "test:watch": "node scripts/test-watch --jspmConfig $npm_package_config_jspmConfigFile --karmaRunnerConfig $npm_package_config_karmaConfigFile --bundleDest $npm_package_config_bundleFile --bundlePackage $npm_package_config_moduleName --bundleSrc $npm_package_config_sourceDir$npm_package_config_sourceFiles --testsSrc $npm_package_config_testsDir$npm_package_config_testsFiles"
   },
   "devDependencies": {
     "bluebird": "^3.3.5",
