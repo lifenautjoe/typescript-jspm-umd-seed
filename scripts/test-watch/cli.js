@@ -6,16 +6,27 @@ var cli = require('cli');
 var testWatch = require('./test-watch');
 
 cli.parse({
-    src: ['A glob pattern to match source files which trigger a run on changed', 'string'],
-    srcExclude: ['A glob pattern to exclude source files', 'string'],
-    specs: ['A glob pattern to match specification files which trigger a run on changed', 'string'],
-    specsExclude: ['A glob pattern to exclude specification files', 'string'],
-    bundleDest: ['The destination of the generated bundle', 'string'],
-    karmaConfigFile: ['The karma configuration file within the project directory', 'string', 'karma.config.js'],
-    jspmConfigFile: ['The jspm configuration file within the project directory', 'jspm.config.js'],
+    // e.g. ./karma.config.js
+    jspmConfig: ['j', 'The path to the jspm configuration file', 'string'],
+    // e.g. npm run karma:runner:run
+    karmaRunnerRunCmd: ['k', 'The command to make the karma runner run', 'string'],
+    // e.g. ./karma.config.js
+    karmaRunnerConfig: ['c', 'The path to the karma runner configuration file', 'string'],
+    // e.g. ./storage/bundle.js
+    bundleDest: ['b', 'The destination of the bundle to create and watch upon for test triggers', 'string'],
+    // e.g. typescript-jspm-umd-seed
+    bundlePackage: ['p', 'The package in the jspm config file to bundle which path should match the given bundleSrc', 'string'],
+    // e.g. ./src/**/*.ts
+    bundleSrc: ['s', 'The source of the bundle', 'string'],
+    // e.g. ./src/**/*Spec.ts
+    testsSrc: ['t', 'The test/s to run', 'string'],
+    // e.g. localhost
     hostname: ['h', 'The karma server hostname', 'string', 'localhost'],
+    // e.g. /
     urlRoot: ['u', 'The karma server url root', 'string', '/'],
+    // e.g. 8080
     port: ['p', 'The karma server port', 'int', 9876],
+    // e.g. true
     failOnEmptyTestSuite: ['f', 'Whether the process should exit on empty specs', 'true', false]
 });
 
