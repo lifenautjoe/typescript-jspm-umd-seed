@@ -31,7 +31,7 @@
     "karma:run": "karma start $npm_package_config_karmaConfigFile",
     "karma:run:once": "npm run karma:run -- --single-run",
     "karma:run:watch": "npm run karma:run",
-    "karma:runner:run": "node scripts/karma-runner-run.js",
+    "karma:runner:run": "node scripts/karma-runner-run",
     "lint": "npm run tslint -- -c tslint.json $npm_package_config_sourceDir$npm_package_config_sourceFiles",
     "lint:watch": "onchange $npm_package_config_sourceDir$npm_package_config_sourceFiles -- npm run lint",
     "dts:fix:path": "replace $npm_package_config_sourceDir '' $npm_package_config_distDir$npm_package_config_moduleName.d.ts",
