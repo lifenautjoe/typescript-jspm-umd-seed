@@ -1,9 +1,10 @@
+# [ Deprecated ]
+This project is deprecated.
+
 # typescript-jspm-umd-seed
 [![Build Status](https://travis-ci.org/thefabulousdev/typescript-jspm-umd-seed.svg?branch=master)](https://travis-ci.org/thefabulousdev/typescript-jspm-umd-seed)
 
 A seed to create [UMD](https://github.com/umdjs/umd) [TypeScript](https://www.typescriptlang.org/) modules with [jspm](http://jspm.io/).
-
-# Work In Progress
 
 ## Main features
 
